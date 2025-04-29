@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function startMultistreamLiveData() {
         setInterval(async () => {
             try {
-                const response = await fetch('https://v6.exchangerate-api.com/v6/ 73a8fc3eccca7b519fa9fdd5/latest/USD');
+                const response = await fetch('https://v6.exchangerate-api.com/v6/73a8fc3eccca7b519fa9fdd5/latest/USD');
                 const data = await response.json();
 
                 monitorCurrency('EUR', data.conversion_rates.EUR, "C5", "lightgreen");
