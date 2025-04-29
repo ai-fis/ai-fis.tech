@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
     positiveButton.addEventListener('click', async () => {
         await Tone.start();
         const polySynth = new Tone.PolySynth(Tone.Synth).toDestination();
-polySynth.triggerAttackRelease(["C4", "E4", "G4"], "0.5");
-      flashBackground("lightgreen");
+        polySynth.triggerAttackRelease(["C4", "E4", "G4"], "0.5");
+        flashBackground("lightgreen");
         logEvent("📈 Positive financial event triggered!");
     });
 
