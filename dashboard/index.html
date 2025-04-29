@@ -28,3 +28,34 @@
   </script>
 </body>
 </html>
+<h2>Financial Sonification Dashboard</h2>
+
+<button id="positiveFlowButton">📈 Positive Financial Flow</button>
+<button id="negativeFlowButton">📉 Negative Financial Flow</button>
+<button id="anomalyButton">⚡ Anomaly Detected</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const positiveButton = document.getElementById('positiveFlowButton');
+    const negativeButton = document.getElementById('negativeFlowButton');
+    const anomalyButton = document.getElementById('anomalyButton');
+
+    positiveButton.addEventListener('click', async () => {
+      await Tone.start();
+      const synth = new Tone.Synth().toDestination();
+      synth.triggerAttackRelease("C5", "0.5"); // Happy sound
+    });
+
+    negativeButton.addEventListener('click', async () => {
+      await Tone.start();
+      const synth = new Tone.Synth().toDestination();
+      synth.triggerAttackRelease("A3", "0.5"); // Warning sound
+    });
+
+    anomalyButton.addEventListener('click', async () => {
+      await Tone.start();
+      const synth = new Tone.Synth().toDestination();
+      synth.triggerAttackRelease("G#4", "0.5"); // Alert sound
+    });
+});
+</script>
