@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const anomalyButton = document.getElementById('anomalyButton');
     const eventLog = document.getElementById('eventLog');
 
+    const polySynth = new Tone.PolySynth().toDestination();
     let previousRates = {
       EUR: null,
       GBP: null,
@@ -51,68 +52,62 @@ document.addEventListener('DOMContentLoaded', function() {
     playButton.addEventListener('click', async () => {
         await Tone.start();
         console.log('Audio Context started');
-        const synth = new Tone.Synth().toDestination();
-        synth.triggerAttackRelease("C4", "0.5");
+        polySynth.triggerAttackRelease(["C4", "E4", "G4"], "0.5");
         startMultistreamLiveData();
     });
 
     positiveButton.addEventListener('click', async () => {
         await Tone.start();
-        const polySynth = new Tone.PolySynth(Tone.Synth).toDestination();
-        polySynth.triggerAttackRelease(["C4", "E4", "G4"], "0.5");
+        polySynth.triggerAttackRelease(["C4", "E4", "G4"], "0.5"); // C major
         flashBackground("lightgreen");
-        logEvent("📈 Positive financial event triggered!");
+        logEvent("🎶 [Manual] Positive financial event (C Major) triggered!");
     });
 
     negativeButton.addEventListener('click', async () => {
         await Tone.start();
-        const synth = new Tone.Synth().toDestination();
-        synth.triggerAttackRelease("A3", "0.5");
+        polySynth.triggerAttackRelease(["A3", "C4", "E4"], "0.5"); // A minor
         flashBackground("lightcoral");
-        logEvent("📉 Negative financial event triggered!");
+        logEvent("🎶 [Manual] Negative financial event (A Minor) triggered!");
     });
 
     anomalyButton.addEventListener('click', async () => {
         await Tone.start();
-        const synth = new Tone.Synth().toDestination();
-        synth.triggerAttackRelease("G#4", "0.5");
+        polySynth.triggerAttackRelease(["G#3", "B3", "D4"], "0.5"); // Diminished chord
         flashBackground("gold");
-        logEvent("⚡ Anomaly detected in financial stream!");
+        logEvent("🎶 [Manual] Anomaly detected (Diminished)!");
     });
 
     function startMultistreamLiveData() {
         setInterval(async () => {
             try {
-                const response = await fetch('https://v6.exchangerate-api.com/v6/73a8fc3eccca7b519fa9fdd5/latest/USD');
+                const response = await fetch('https://v6.exchangerate-api.com/v6/YOUR-API-KEY/latest/USD');
                 const data = await response.json();
 
-                monitorCurrency('EUR', data.conversion_rates.EUR, "C5", "lightgreen");
-                monitorCurrency('GBP', data.conversion_rates.GBP, "D5", "lightblue");
-                monitorCurrency('KES', data.conversion_rates.KES, "E5", "plum");
-                monitorCurrency('JPY', data.conversion_rates.JPY, "F5", "lightyellow");
+                monitorCurrency('EUR', data.conversion_rates.EUR, ["C4", "E4", "G4"], "lightgreen");
+                monitorCurrency('GBP', data.conversion_rates.GBP, ["D4", "F#4", "A4"], "lightblue");
+                monitorCurrency('KES', data.conversion_rates.KES, ["E4", "G#4", "B4"], "plum");
+                monitorCurrency('JPY', data.conversion_rates.JPY, ["F4", "A4", "C5"], "lightyellow");
 
             } catch (error) {
                 console.error('Error fetching live multistream exchange rates:', error);
             }
-        }, 60000); // Every 60 seconds
+        }, 60000);
     }
 
-    function monitorCurrency(currency, newRate, midiNote, color) {
-        const synth = new Tone.Synth().toDestination();
-
+    function monitorCurrency(currency, newRate, chord, color) {
         if (previousRates[currency] !== null) {
             if (newRate > previousRates[currency]) {
-                synth.triggerAttackRelease(midiNote, "0.5");
+                polySynth.triggerAttackRelease(chord, "0.5");
                 flashBackground(color);
-                logEvent(`📈 [${currency}] Rate increased: ${newRate}`);
+                logEvent(`📈 [${currency}] Rate increased. Chord: ${chord.join('-')} | ${newRate}`);
             } else if (newRate < previousRates[currency]) {
-                synth.triggerAttackRelease(midiNote, "0.5");
+                polySynth.triggerAttackRelease(chord, "0.5");
                 flashBackground(color);
-                logEvent(`📉 [${currency}] Rate decreased: ${newRate}`);
+                logEvent(`📉 [${currency}] Rate decreased. Chord: ${chord.join('-')} | ${newRate}`);
             } else {
-                synth.triggerAttackRelease(midiNote, "0.5");
+                polySynth.triggerAttackRelease(chord, "0.5");
                 flashBackground(color);
-                logEvent(`⚡ [${currency}] Rate unchanged: ${newRate}`);
+                logEvent(`⚡ [${currency}] Rate unchanged. Chord: ${chord.join('-')} | ${newRate}`);
             }
         }
 
@@ -120,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+
 
 
 </body>
