@@ -1,6 +1,7 @@
+
 # AI-FIS Technologies Website
 
-This repository hosts the public website for [www.ai-fis.tech](https://www.ai-fis.tech).
+The official website for AI-FIS Technologies Inc., built on ethical AI and financial integrity.
 
 ## Contents
 - Homepage
@@ -16,3 +17,4 @@ All pages are styled with `styles.css`.
 ---
 
 Built with integrity. Guided by ethics.
+
