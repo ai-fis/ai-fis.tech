@@ -1,1 +1,30 @@
-<html><head><title>Dashboard</title><link rel='stylesheet' href='../styles.css'></head><body><h1>Dashboard</h1><p>Live Financial Sonification - Coming Soon!</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - AI-FIS Technologies</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="https://unpkg.com/tone@14.8.39/build/Tone.js"></script>
+</head>
+<body>
+  <h1>Dashboard Overview</h1>
+  <p>Live Financial Flows and MIDI Sonification Panel Coming Soon.</p>
+
+  <h2>Financial Sonification Dashboard</h2>
+  <button id="playNoteButton">🎵 Play Financial Pulse</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const playButton = document.getElementById('playNoteButton');
+
+      playButton.addEventListener('click', async () => {
+        await Tone.start();
+        console.log('Audio Context started');
+        const synth = new Tone.Synth().toDestination();
+        synth.triggerAttackRelease("C4", "0.5");
+      });
+    });
+  </script>
+</body>
+</html>
