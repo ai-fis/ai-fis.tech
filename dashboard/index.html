@@ -27,7 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const negativeButton = document.getElementById('negativeFlowButton');
     const anomalyButton = document.getElementById('anomalyButton');
     const eventLog = document.getElementById('eventLog');
-    let previousRate = null; // For tracking rate changes
+
+    let previousRates = {
+      EUR: null,
+      GBP: null,
+      KES: null,
+      JPY: null
+    };
 
     function logEvent(message) {
         const p = document.createElement('p');
@@ -47,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Audio Context started');
         const synth = new Tone.Synth().toDestination();
         synth.triggerAttackRelease("C4", "0.5");
-        startLiveDataStream(); // Start fetching live data after user gesture
+        startMultistreamLiveData();
     });
 
     positiveButton.addEventListener('click', async () => {
@@ -74,38 +80,47 @@ document.addEventListener('DOMContentLoaded', function() {
         logEvent("⚡ Anomaly detected in financial stream!");
     });
 
-    function startLiveDataStream() {
+    function startMultistreamLiveData() {
         setInterval(async () => {
             try {
-                const response = await fetch('https://v6.exchangerate-api.com/v6/73a8fc3eccca7b519fa9fdd5/latest/USD');
+                const response = await fetch('https://v6.exchangerate-api.com/v6/ 73a8fc3eccca7b519fa9fdd5/latest/USD');
                 const data = await response.json();
-                const newRate = data.conversion_rates.EUR; // Example: Track USD → EUR rate
 
-                if (previousRate !== null) {
-                    const synth = new Tone.Synth().toDestination();
-                    if (newRate > previousRate) {
-                        synth.triggerAttackRelease("C5", "0.5");
-                        flashBackground("lightgreen");
-                        logEvent(`📈 [Live] USD to EUR rate increased: ${newRate}`);
-                    } else if (newRate < previousRate) {
-                        synth.triggerAttackRelease("A3", "0.5");
-                        flashBackground("lightcoral");
-                        logEvent(`📉 [Live] USD to EUR rate decreased: ${newRate}`);
-                    } else {
-                        synth.triggerAttackRelease("G#4", "0.5");
-                        flashBackground("gold");
-                        logEvent(`⚡ [Live] USD to EUR rate unchanged: ${newRate}`);
-                    }
-                }
+                monitorCurrency('EUR', data.conversion_rates.EUR, "C5", "lightgreen");
+                monitorCurrency('GBP', data.conversion_rates.GBP, "D5", "lightblue");
+                monitorCurrency('KES', data.conversion_rates.KES, "E5", "plum");
+                monitorCurrency('JPY', data.conversion_rates.JPY, "F5", "lightyellow");
 
-                previousRate = newRate;
             } catch (error) {
-                console.error('Error fetching live exchange rate:', error);
+                console.error('Error fetching live multistream exchange rates:', error);
             }
-        }, 60000); // Fetch every 60 seconds (safe for free plan limits)
+        }, 60000); // Every 60 seconds
+    }
+
+    function monitorCurrency(currency, newRate, midiNote, color) {
+        const synth = new Tone.Synth().toDestination();
+
+        if (previousRates[currency] !== null) {
+            if (newRate > previousRates[currency]) {
+                synth.triggerAttackRelease(midiNote, "0.5");
+                flashBackground(color);
+                logEvent(`📈 [${currency}] Rate increased: ${newRate}`);
+            } else if (newRate < previousRates[currency]) {
+                synth.triggerAttackRelease(midiNote, "0.5");
+                flashBackground(color);
+                logEvent(`📉 [${currency}] Rate decreased: ${newRate}`);
+            } else {
+                synth.triggerAttackRelease(midiNote, "0.5");
+                flashBackground(color);
+                logEvent(`⚡ [${currency}] Rate unchanged: ${newRate}`);
+            }
+        }
+
+        previousRates[currency] = newRate;
     }
 });
 </script>
+
 
 </body>
 </html>
