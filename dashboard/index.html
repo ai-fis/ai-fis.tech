@@ -17,38 +17,76 @@
   <button id="negativeFlowButton">📉 Negative Financial Flow</button>
   <button id="anomalyButton">⚡ Anomaly Detected</button>
 
+  <h3>Event Stream:</h3>
+  <div id="eventLog" style="margin-top: 10px; font-family: Arial, sans-serif; color: #00bfff;"></div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const playButton = document.getElementById('playNoteButton');
       const positiveButton = document.getElementById('positiveFlowButton');
       const negativeButton = document.getElementById('negativeFlowButton');
       const anomalyButton = document.getElementById('anomalyButton');
+      const eventLog = document.getElementById('eventLog');
+
+      function logEvent(message) {
+        const p = document.createElement('p');
+        p.textContent = message;
+        eventLog.prepend(p);
+      }
 
       playButton.addEventListener('click', async () => {
         await Tone.start();
         console.log('Audio Context started');
         const synth = new Tone.Synth().toDestination();
-        synth.triggerAttackRelease("C4", "0.5"); // Original pulse
+        synth.triggerAttackRelease("C4", "0.5");
       });
 
       positiveButton.addEventListener('click', async () => {
         await Tone.start();
         const synth = new Tone.Synth().toDestination();
-        synth.triggerAttackRelease("C5", "0.5"); // Positive flow
+        synth.triggerAttackRelease("C5", "0.5");
+        logEvent("📈 Positive financial event triggered!");
       });
 
       negativeButton.addEventListener('click', async () => {
         await Tone.start();
         const synth = new Tone.Synth().toDestination();
-        synth.triggerAttackRelease("A3", "0.5"); // Negative flow
+        synth.triggerAttackRelease("A3", "0.5");
+        logEvent("📉 Negative financial event triggered!");
       });
 
       anomalyButton.addEventListener('click', async () => {
         await Tone.start();
         const synth = new Tone.Synth().toDestination();
-        synth.triggerAttackRelease("G#4", "0.5"); // Anomaly
+        synth.triggerAttackRelease("G#4", "0.5");
+        logEvent("⚡ Anomaly detected in financial stream!");
       });
+
+      // Start Simulated Automatic Financial Stream after Tone is allowed
+      playButton.addEventListener('click', async () => {
+        simulateFinancialEvents();
+      });
+
+      function simulateFinancialEvents() {
+        setInterval(() => {
+          const eventTypes = ["positive", "negative", "anomaly"];
+          const randomEvent = eventTypes[Math.floor(Math.random() * eventTypes.length)];
+          const synth = new Tone.Synth().toDestination();
+
+          if (randomEvent === "positive") {
+            synth.triggerAttackRelease("C5", "0.5");
+            logEvent("📈 [Auto] Positive financial event triggered!");
+          } else if (randomEvent === "negative") {
+            synth.triggerAttackRelease("A3", "0.5");
+            logEvent("📉 [Auto] Negative financial event triggered!");
+          } else if (randomEvent === "anomaly") {
+            synth.triggerAttackRelease("G#4", "0.5");
+            logEvent("⚡ [Auto] Anomaly detected in financial stream!");
+          }
+        }, 4000); // Every 4 seconds
+      }
     });
   </script>
 </body>
 </html>
+
