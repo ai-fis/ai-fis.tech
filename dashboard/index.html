@@ -34,6 +34,13 @@
         eventLog.prepend(p);
       }
 
+      function flashBackground(color) {
+        document.body.style.backgroundColor = color;
+        setTimeout(() => {
+          document.body.style.backgroundColor = "white";
+        }, 500); // Flash lasts 500 milliseconds
+      }
+
       playButton.addEventListener('click', async () => {
         await Tone.start();
         console.log('Audio Context started');
@@ -45,6 +52,7 @@
         await Tone.start();
         const synth = new Tone.Synth().toDestination();
         synth.triggerAttackRelease("C5", "0.5");
+        flashBackground("lightgreen");
         logEvent("📈 Positive financial event triggered!");
       });
 
@@ -52,6 +60,7 @@
         await Tone.start();
         const synth = new Tone.Synth().toDestination();
         synth.triggerAttackRelease("A3", "0.5");
+        flashBackground("lightcoral");
         logEvent("📉 Negative financial event triggered!");
       });
 
@@ -59,10 +68,10 @@
         await Tone.start();
         const synth = new Tone.Synth().toDestination();
         synth.triggerAttackRelease("G#4", "0.5");
+        flashBackground("gold");
         logEvent("⚡ Anomaly detected in financial stream!");
       });
 
-      // Start Simulated Automatic Financial Stream after Tone is allowed
       playButton.addEventListener('click', async () => {
         simulateFinancialEvents();
       });
@@ -75,12 +84,15 @@
 
           if (randomEvent === "positive") {
             synth.triggerAttackRelease("C5", "0.5");
+            flashBackground("lightgreen");
             logEvent("📈 [Auto] Positive financial event triggered!");
           } else if (randomEvent === "negative") {
             synth.triggerAttackRelease("A3", "0.5");
+            flashBackground("lightcoral");
             logEvent("📉 [Auto] Negative financial event triggered!");
           } else if (randomEvent === "anomaly") {
             synth.triggerAttackRelease("G#4", "0.5");
+            flashBackground("gold");
             logEvent("⚡ [Auto] Anomaly detected in financial stream!");
           }
         }, 4000); // Every 4 seconds
@@ -89,4 +101,5 @@
   </script>
 </body>
 </html>
+
 
