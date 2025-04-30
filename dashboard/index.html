@@ -103,6 +103,48 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 60000);
 }
 
+function classifyMarketMood(trendMap) {
+    const values = Object.values(trendMap);
+    const up = values.filter(v => v === "up").length;
+    const down = values.filter(v => v === "down").length;
+    const unchanged = values.filter(v => v === "unchanged").length;
+
+    if (up === 4) return "optimistic";
+    if (down === 4) return "downturn";
+    if (up > 0 && down > 0) return "volatile";
+    if (unchanged === 4) return "neutral";
+    return "mixed";
+}
+
+function generateSoundtrack(mood) {
+    const synth = new Tone.PolySynth().toDestination();
+    const now = Tone.now();
+
+    switch(mood) {
+        case "optimistic":
+            synth.triggerAttackRelease(["C4", "E4", "G4", "B4"], "4n", now);
+            synth.triggerAttackRelease(["E4", "G4", "C5"], "2n", now + 1);
+            break;
+
+        case "downturn":
+            synth.triggerAttackRelease(["A3", "C4", "E4", "G4"], "4n", now);
+            synth.triggerAttackRelease(["C4", "D#4", "F4"], "2n", now + 1);
+            break;
+
+        case "volatile":
+            synth.triggerAttackRelease(["F#4", "A4", "C5", "E5"], "8n", now);
+            synth.triggerAttackRelease(["D4", "G4", "B4"], "2n", now + 1);
+            break;
+
+        case "neutral":
+            synth.triggerAttackRelease(["E4", "G4", "B4", "D5"], "4n", now);
+            break;
+
+        default:
+            synth.triggerAttackRelease(["G3", "B3", "D4"], "4n", now);
+    }
+}
+
 function detectHarmony(newRates) {
     const trend = {};
     let up = 0, down = 0, unchanged = 0;
@@ -118,6 +160,12 @@ function detectHarmony(newRates) {
             trend[currency] = "unchanged"; unchanged++;
         }
     }
+
+    const mood = classifyMarketMood(trend);
+    generateSoundtrack(mood);
+    logEvent(`🎼 Market mood: ${mood} → Soundtrack played`);
+}
+
 
     const polySynth = new Tone.PolySynth().toDestination();
 
