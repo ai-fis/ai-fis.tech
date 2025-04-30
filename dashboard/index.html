@@ -43,7 +43,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const positiveButton = document.getElementById('positiveFlowButton');
     const negativeButton = document.getElementById('negativeFlowButton');
     const anomalyButton = document.getElementById('anomalyButton');
-    const eventLog = document.getElementById('eventLog');
+    const eventLog = document.getElementById('eventLog');// === 📜 Event Log Storage ===
+const eventHistory = [];
+
+function logEvent(message) {
+    const timestamp = new Date().toLocaleTimeString();
+    const entry = `[${timestamp}] ${message}`;
+    eventHistory.push(entry);
+
+    const p = document.createElement('p');
+    p.textContent = entry;
+    eventLog.prepend(p);
+}
+
+// === 💾 Export Event Log ===
+document.getElementById('exportLogButton').addEventListener('click', () => {
+    const blob = new Blob([eventHistory.join("\n")], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "AI_FIS_Event_Log.txt";
+    a.click();
+
+    URL.revokeObjectURL(url);
+});
+
 
     const polySynth = new Tone.PolySynth().toDestination();
   // === 🎚️ EQ Filter Chain ===
@@ -320,6 +345,9 @@ function loopPlayback() {
   <label>High (Crypto/Tech): <input type="range" id="highEQ" min="0" max="1" step="0.01" value="1"></label>
 </div>
 
+  <div style="width: 600px; margin: 20px auto; text-align: center;">
+  <button id="exportLogButton" style="padding: 10px 20px;">💾 Export Event Log</button>
+</div>
   <div id="aifis-player">
   <p style="color:white; font-family: Arial;">🎼 AI-FIS Soundtrack</p>
   <button onclick="Tone.start(); loopPlayback()">▶️ Play</button>
