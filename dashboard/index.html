@@ -45,6 +45,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const eventLog = document.getElementById('eventLog');
 
     const polySynth = new Tone.PolySynth().toDestination();
+  // === 🎚️ EQ Filter Chain ===
+const lowEQ = new Tone.Filter(200, "lowshelf").toDestination();
+const midEQ = new Tone.Filter(1000, "peaking").connect(lowEQ);
+const highEQ = new Tone.Filter(5000, "highshelf").connect(midEQ);
+
+// Connect synth to EQ chain
+polySynth.disconnect(); // remove default connection
+polySynth.connect(highEQ);
+
+// Live slider updates
+document.getElementById("lowEQ").addEventListener("input", (e) => {
+    lowEQ.gain.value = (e.target.value * 20) - 10;
+});
+
+document.getElementById("midEQ").addEventListener("input", (e) => {
+    midEQ.gain.value = (e.target.value * 20) - 10;
+});
+
+document.getElementById("highEQ").addEventListener("input", (e) => {
+    highEQ.gain.value = (e.target.value * 20) - 10;
+});
+
   // === Visualizer Setup ===
 const canvas = document.getElementById("visualizer");
 const ctx = canvas.getContext("2d");
@@ -252,6 +274,13 @@ function loopPlayback() {
 });
 </script>
   <canvas id="visualizer" width="600" height="120" style="display: block; margin: 20px auto; background: #111; border-radius: 12px;"></canvas>
+  <div style="width: 600px; margin: 20px auto; color: white; font-family: Arial;">
+  <h3>🎚️ EQ Filter Panel</h3>
+  <label>Low (Agriculture): <input type="range" id="lowEQ" min="0" max="1" step="0.01" value="1"></label><br>
+  <label>Mid (Finance): <input type="range" id="midEQ" min="0" max="1" step="0.01" value="1"></label><br>
+  <label>High (Crypto/Tech): <input type="range" id="highEQ" min="0" max="1" step="0.01" value="1"></label>
+</div>
+
   <div id="aifis-player">
   <p style="color:white; font-family: Arial;">🎼 AI-FIS Soundtrack</p>
   <button onclick="Tone.start(); loopPlayback()">▶️ Play</button>
