@@ -161,6 +161,27 @@ function generateSoundtrack(mood) {
     }
 }
 
+function detectHarmony(newRates) {
+    const trend = {};
+    let up = 0, down = 0, unchanged = 0;
+
+    for (const currency in newRates) {
+        if (previousRates[currency] == null) {
+            trend[currency] = "neutral";
+        } else if (newRates[currency] > previousRates[currency]) {
+            trend[currency] = "up"; up++;
+        } else if (newRates[currency] < previousRates[currency]) {
+            trend[currency] = "down"; down++;
+        } else {
+            trend[currency] = "unchanged"; unchanged++;
+        }
+    }
+
+    currentMood = classifyMarketMood(trend);
+generateSoundtrack(currentMood);
+    logEvent(`🎼 Market mood: ${currentMood} → Soundtrack played`);
+}
+
 function loopPlayback() {
   const synth = new Tone.PolySynth().toDestination();
   let theme = [];
@@ -185,55 +206,12 @@ function loopPlayback() {
   setInterval(() => {
     synth.triggerAttackRelease(theme, "2n", Tone.now());
   }, 30000); // plays every 30 seconds
-}
-
-function detectHarmony(newRates) {
-    const trend = {};
-    let up = 0, down = 0, unchanged = 0;
-
-    for (const currency in newRates) {
-        if (previousRates[currency] == null) {
-            trend[currency] = "neutral";
-        } else if (newRates[currency] > previousRates[currency]) {
-            trend[currency] = "up"; up++;
-        } else if (newRates[currency] < previousRates[currency]) {
-            trend[currency] = "down"; down++;
-        } else {
-            trend[currency] = "unchanged"; unchanged++;
-        }
-    }
-
-    currentMood = classifyMarketMood(trend);
-generateSoundtrack(currentMood);
-    logEvent(`🎼 Market mood: ${currentMood} → Soundtrack played`);
-}
-
-    const polySynth = new Tone.PolySynth().toDestination();
-
-    currentMood = classifyMarketMood(trend);
-generateSoundtrack(currentMood);
-logEvent(`🎼 Market mood: ${currentMood} → Soundtrack played`);
-
-    } else if (down === 4) {
-        polySynth.triggerAttackRelease(["A3", "C4", "E4", "G4"], "1"); // Amin7
-        flashBackground("lightcoral");
-        logEvent("🌒 All currencies down → Global downturn → Amin7 played");
-    } else if (up > 0 && down > 0) {
-        polySynth.triggerAttackRelease(["D4", "G4", "A4", "C5"], "1"); // Suspended chord
-        flashBackground("gold");
-        logEvent("⚡ Market divergence detected → Suspended harmony played");
-    } else {
-        polySynth.triggerAttackRelease(["E4", "G4", "B4", "D5"], "1"); // Em7 as default
-        flashBackground("white");
-        logEvent("🌐 Mixed or stable market → Em7 played as base theme");
-    }
-}
-
+}       
 });
 </script>
   <div id="aifis-player">
   <p style="color:white; font-family: Arial;">🎼 AI-FIS Soundtrack</p>
-  <button onclick="Tone.start(); loopPlayback(currentMood)">▶️ Play</button>
+  <button onclick="Tone.start(); loopPlayback()">▶️ Play</button>
   <button onclick="Tone.Transport.pause()">⏸ Pause</button>
 </div>
 </body>
