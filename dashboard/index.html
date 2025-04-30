@@ -129,6 +129,33 @@ playButton.addEventListener('click', () => {
           document.body.style.backgroundColor = "white";
         }, 500);
     }
+    
+    function simulateAnomalyEvent(eventType = "fraud") {
+    const eventTypes = {
+        fraud: {
+            chord: ["G#3", "B3", "D4"],
+            color: "crimson",
+            label: "🚨 Fraud Spike"
+        },
+        currency_shock: {
+            chord: ["C#4", "E4", "G4"],
+            color: "orange",
+            label: "💱 Currency Shock"
+        },
+        panic: {
+            chord: ["A2", "C3", "D#3"],
+            color: "purple",
+            label: "⚠️ Market Panic"
+        }
+    };
+
+    const alert = eventTypes[eventType];
+
+    polySynth.triggerAttackRelease(alert.chord, "1");
+    flashBackground(alert.color);
+    logEvent(`[AUTO] ${alert.label} triggered`);
+}
+
 
     playButton.addEventListener('click', async () => {
         await Tone.start();
@@ -183,6 +210,17 @@ playButton.addEventListener('click', () => {
         }
     }, 60000);
 }
+// Simulated AI Anomaly Triggers
+setInterval(() => {
+    const roll = Math.random();
+    if (roll > 0.9) {
+        simulateAnomalyEvent("fraud");
+    } else if (roll > 0.85) {
+        simulateAnomalyEvent("currency_shock");
+    } else if (roll > 0.8) {
+        simulateAnomalyEvent("panic");
+    }
+}, 45000); // every 45s, random event may fire
 
 function classifyMarketMood(trendMap) {
     const values = Object.values(trendMap);
