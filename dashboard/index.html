@@ -36,6 +36,8 @@
 
  <script>
 document.addEventListener('DOMContentLoaded', function() {
+    let currentMood = "neutral";
+
     const playButton = document.getElementById('playNoteButton');
     const positiveButton = document.getElementById('positiveFlowButton');
     const negativeButton = document.getElementById('negativeFlowButton');
@@ -159,6 +161,32 @@ function generateSoundtrack(mood) {
     }
 }
 
+function loopPlayback() {
+  const synth = new Tone.PolySynth().toDestination();
+  let theme = [];
+
+  switch (currentMood) {
+    case "optimistic":
+      theme = ["C4", "E4", "G4", "B4"]; // Cmaj7
+      break;
+    case "downturn":
+      theme = ["A3", "C4", "E4", "G4"]; // Amin7
+      break;
+    case "volatile":
+      theme = ["D4", "G4", "A4", "C5"]; // Suspended
+      break;
+    case "neutral":
+      theme = ["E4", "G4", "B4", "D5"]; // Em7
+      break;
+    default:
+      theme = ["G3", "B3", "D4"]; // Default grounding
+  }
+
+  setInterval(() => {
+    synth.triggerAttackRelease(theme, "2n", Tone.now());
+  }, 30000); // plays every 30 seconds
+}
+
 function detectHarmony(newRates) {
     const trend = {};
     let up = 0, down = 0, unchanged = 0;
@@ -175,11 +203,10 @@ function detectHarmony(newRates) {
         }
     }
 
-    const mood = classifyMarketMood(trend);
-    generateSoundtrack(mood);
+    currentMood = classifyMarketMood(trend);
+generateSoundtrack(currentMood);
     logEvent(`🎼 Market mood: ${mood} → Soundtrack played`);
 }
-
 
     const polySynth = new Tone.PolySynth().toDestination();
 
