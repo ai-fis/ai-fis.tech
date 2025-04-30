@@ -210,6 +210,29 @@ playButton.addEventListener('click', () => {
         logEvent("🎶 [Manual] Anomaly detected (Diminished)!");
     });
 
+async function playbackTimeline() {
+    for (const entry of eventHistory) {
+        if (entry.includes("🚨")) {
+            simulateAnomalyEvent("fraud");
+        } else if (entry.includes("💱")) {
+            simulateAnomalyEvent("currency_shock");
+        } else if (entry.includes("⚠️")) {
+            simulateAnomalyEvent("panic");
+        } else if (entry.includes("C Major")) {
+            polySynth.triggerAttackRelease(["C4", "E4", "G4"], "0.5");
+        } else if (entry.includes("A Minor")) {
+            polySynth.triggerAttackRelease(["A3", "C4", "E4"], "0.5");
+        } else if (entry.includes("Em7")) {
+            polySynth.triggerAttackRelease(["E4", "G4", "B4", "D5"], "0.5");
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 1500)); // delay between events
+    }
+
+    logEvent("✅ Timeline replay complete.");
+}
+
+
     function startMultistreamLiveData() {
     setInterval(async () => {
         try {
