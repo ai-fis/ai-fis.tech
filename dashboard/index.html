@@ -45,6 +45,48 @@ document.addEventListener('DOMContentLoaded', function() {
     const eventLog = document.getElementById('eventLog');
 
     const polySynth = new Tone.PolySynth().toDestination();
+  // === Visualizer Setup ===
+const canvas = document.getElementById("visualizer");
+const ctx = canvas.getContext("2d");
+
+const analyser = Tone.context.createAnalyser();
+analyser.fftSize = 256;
+
+const bufferLength = analyser.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
+
+// Connect the synth to the analyser
+polySynth.connect(analyser);
+
+function drawVisualizer() {
+    requestAnimationFrame(drawVisualizer);
+
+    analyser.getByteFrequencyData(dataArray);
+    ctx.fillStyle = "#111";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const barWidth = (canvas.width / bufferLength) * 2.5;
+    let barHeight;
+    let x = 0;
+
+    for (let i = 0; i < bufferLength; i++) {
+        barHeight = dataArray[i] / 1.8;
+
+        const r = barHeight + 30;
+        const g = 250 * (i / bufferLength);
+        const b = 150;
+        ctx.fillStyle = `rgb(${r},${g},${b})`;
+        ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+        x += barWidth + 1;
+    }
+}
+
+// Start drawing loop once user activates AudioContext
+playButton.addEventListener('click', () => {
+    drawVisualizer(); // trigger animation
+});
+
     let previousRates = {
       EUR: null,
       GBP: null,
@@ -209,6 +251,7 @@ function loopPlayback() {
 }       
 });
 </script>
+  <canvas id="visualizer" width="600" height="120" style="display: block; margin: 20px auto; background: #111; border-radius: 12px;"></canvas>
   <div id="aifis-player">
   <p style="color:white; font-family: Arial;">🎼 AI-FIS Soundtrack</p>
   <button onclick="Tone.start(); loopPlayback()">▶️ Play</button>
