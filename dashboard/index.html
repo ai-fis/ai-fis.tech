@@ -210,10 +210,10 @@ generateSoundtrack(currentMood);
 
     const polySynth = new Tone.PolySynth().toDestination();
 
-    if (up === 4) {
-        polySynth.triggerAttackRelease(["C4", "E4", "G4", "B4"], "1"); // Cmaj7
-        flashBackground("lightgreen");
-        logEvent("🌞 All currencies up → Global optimism → Cmaj7 played");
+    currentMood = classifyMarketMood(trend);
+generateSoundtrack(currentMood);
+logEvent(`🎼 Market mood: ${currentMood} → Soundtrack played`);
+
     } else if (down === 4) {
         polySynth.triggerAttackRelease(["A3", "C4", "E4", "G4"], "1"); // Amin7
         flashBackground("lightcoral");
