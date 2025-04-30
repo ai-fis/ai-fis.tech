@@ -205,7 +205,7 @@ function detectHarmony(newRates) {
 
     currentMood = classifyMarketMood(trend);
 generateSoundtrack(currentMood);
-    logEvent(`🎼 Market mood: ${mood} → Soundtrack played`);
+    logEvent(`🎼 Market mood: ${currentMood} → Soundtrack played`);
 }
 
     const polySynth = new Tone.PolySynth().toDestination();
