@@ -22,12 +22,13 @@
 <script src="https://unpkg.com/tone@14.8.39/build/Tone.js"></script>
 <script src="dashboard/ai_fis_player.js"></script>
 </head>
-<body><div style="text-align: center; margin: 30px auto;">
-  <img src="dashboard/logo.png" alt="AI-FIS Technologies Logo" style="width: 240px; max-width: 90%; border-radius: 8px;">
+<body>
+<div style="text-align: center; margin: 30px auto;">
+  <img src="dashboard/banner.png" alt="AI-FIS Banner" style="width: 100%; max-width: 960px; border-radius: 10px;" />
 </div>
 
-<div style="text-align: center; margin-top: 20px;">
-  <img src="logo.png" alt="AI-FIS Technologies Inc." style="width: 240px; max-width: 90%; border-radius: 8px;" />
+<div style="text-align: center; margin: 30px auto;">
+  <img src="dashboard/logo.png" alt="AI-FIS Technologies Logo" style="width: 240px; max-width: 90%; border-radius: 8px;">
 </div>
 
   <h1>Dashboard Overview</h1>
@@ -148,12 +149,6 @@ playButton.addEventListener('click', () => {
       KES: null,
       JPY: null
     };
-
-    function logEvent(message) {
-        const p = document.createElement('p');
-        p.textContent = message;
-        eventLog.prepend(p);
-    }
 
     function flashBackground(color) {
         document.body.style.backgroundColor = color;
