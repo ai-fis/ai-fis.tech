@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - AI-FIS Technologies</title>
-  <script>
+<script>
   const isLocal = location.hostname === "localhost";
   const style = document.createElement("link");
   style.rel = "stylesheet";
@@ -33,6 +33,16 @@
   style.rel = "stylesheet";
   style.href = isLocal ? "styles.css" : "/ai-fis.tech/dashboard/styles.css";
   document.head.appendChild(style);
+</script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const style = document.createElement("link");
+    style.rel = "stylesheet";
+    style.href = location.hostname === "localhost"
+      ? "styles.css"
+      : "/ai-fis.tech/dashboard/styles.css";
+    document.head.appendChild(style);
+  });
 </script>
 
 </head>
