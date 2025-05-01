@@ -21,13 +21,6 @@
 <script src="https://unpkg.com/tone@14.8.39/build/Tone.js"></script>
 <script src="ai_fis_player.js"></script>
 <script>
-  const isLocal = location.hostname === "localhost";
-  const style = document.createElement("link");
-  style.rel = "stylesheet";
-  style.href = isLocal ? "styles.css" : "/ai-fis.tech/dashboard/styles.css";
-  document.head.appendChild(style);
-</script>
-<script>
   window.addEventListener("DOMContentLoaded", () => {
     const style = document.createElement("link");
     style.rel = "stylesheet";
