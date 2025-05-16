@@ -1,5 +1,25 @@
-*.zip
-*.DS_Store
-node_modules/
+# Project Build Artifacts
 dist/
+node_modules/
+
+# Archives
+*.zip
+
+# Logs and Temporary Files
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# Environment Variables
 .env
+
+# OS System Files
+.DS_Store
+desktop.ini
+Thumbs.db
+
+# Auto-exported browser folders
+untitled1_files/
+
