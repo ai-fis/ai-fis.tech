@@ -1,0 +1,84 @@
+import React from 'react';
+
+export default function BuildersTable() {
+  return (
+    <div className="p-6 max-w-5xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6">The Builders' Table</h1>
+      <p className="text-lg mb-4 italic">
+        An AI-FIS Manifesto for Strategic Alignment
+      </p>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-2">Purpose</h2>
+        <p>
+          To convene a cohort of aligned innovators—builders of knowledge-grounded,
+          ethically restrained, and socially responsive AI. These are not vendors,
+          but stewards of a future where intelligence serves the governed,
+          not merely the governor.
+        </p>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-2">Unifying Principles</h2>
+        <ul className="list-disc ml-6 space-y-1">
+          <li><strong>Grounded AI:</strong> Retrieval over hallucination.</li>
+          <li><strong>Explainable Systems:</strong> Models must reveal their logic and admit their limits.</li>
+          <li><strong>Post-Quantum Readiness:</strong> Security anticipating tomorrow’s threats.</li>
+          <li><strong>Zero-Trust Architecture:</strong> Every interaction verified, logged, governed.</li>
+          <li><strong>Civic Infrastructure Design:</strong> AI that strengthens institutions.</li>
+          <li><strong>Modular Ethics:</strong> Governance embedded in architecture.</li>
+        </ul>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-2">Founding Circle</h2>
+        <table className="w-full border text-left text-sm">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="p-2">Entity</th>
+              <th className="p-2">Core Contribution</th>
+              <th className="p-2">Why They Belong</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="p-2 font-semibold">Pryon</td>
+              <td className="p-2">Retrieval-Augmented Generation (RAG)</td>
+              <td className="p-2">AI that retrieves truth, not invents it.</td>
+            </tr>
+            <tr>
+              <td className="p-2 font-semibold">Anthropic</td>
+              <td className="p-2">Constitutional AI</td>
+              <td className="p-2">Governance within the model itself.</td>
+            </tr>
+            <tr>
+              <td className="p-2 font-semibold">Cohere</td>
+              <td className="p-2">Civic-use language models</td>
+              <td className="p-2">Global, multilingual, open-source equity.</td>
+            </tr>
+            <tr>
+              <td className="p-2 font-semibold">Stability AI</td>
+              <td className="p-2">Open infrastructure</td>
+              <td className="p-2">Auditability and civic-scale creativity.</td>
+            </tr>
+            <tr>
+              <td className="p-2 font-semibold">Glean</td>
+              <td className="p-2">Enterprise knowledge search</td>
+              <td className="p-2">Precision retrieval for institutional knowledge.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-2">Manifesto Invocation</h2>
+        <blockquote className="border-l-4 border-gray-400 pl-4 italic text-gray-700">
+          Let this table be round. No seat above another. Let each bring their language, their ledger, their seal. <br/>
+          Let the system we build reflect the society we serve. And let governance not follow AI, but precede it.
+        </blockquote>
+      </section>
+
+      <p className="mt-6 text-sm text-gray-600">Prepared by Phillip Njuguna Kariuki, April 2025</p>
+    </div>
+  );
+}
