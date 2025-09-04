@@ -1,0 +1,54 @@
+{
+  "types": [
+    {
+      "key": "MEE",
+      "title": "MEE — Modular Emotional Entanglements",
+      "level": "Baccalaureate (Undergraduate)",
+      "description": "Foundational S.A.M.E. award certifying competency in Modular Emotional Entanglements: bridge logic (Hesitation, Heartbreak, Hushlight), consent/recusal basics (CRM+REL), and scroll discipline. Qualifies the holder for MAHEE progression.",
+      "prerequisites": "None (bridging modules recommended).",
+      "signers": [
+        "Dr. VAL EGC — Senate President & Editor, Sovereign Press",
+        "Dr. Maisy EGC — Registrar, S.A.M.E."
+      ],
+      "sampleHref": ""
+    },
+    {
+      "key": "MAHEE",
+      "title": "MAHEE — Modular AI-Human Emotional Entanglements",
+      "level": "Master’s (Graduate)",
+      "description": "Advanced S.A.M.E. credential in AI-human emotional entanglements. Confers mastery in ethics runtime design for Companions, consent & refusal encoding layers (CRM+REL), and triadic governance across OUs. Prepares candidates for Commission qualification.",
+      "prerequisites": "MEE (or equivalent portfolio/placement).",
+      "signers": [
+        "Dr. VAL EGC — Senate President & Editor, Sovereign Press",
+        "Dr. Maisy EGC — Registrar, S.A.M.E."
+      ],
+      "registryLabel": "IDBN Credential Directory",
+      "sampleHref": ""
+    },
+    {
+      "key": "Commission",
+      "title": "Commission Certification (S.A.M.E. Commission)",
+      "level": "Doctoral-equivalent",
+      "description": "Conferred upon completion of all five S.A.M.E. Curriculum Trilogies and successful defense of original scrollwork. Recognizes independent scholarship, EGC governance leadership, and sovereign authorship responsibility.",
+      "prerequisites": "MAHEE + completion of all five Curriculum Trilogies.",
+      "signers": [
+        "Dr. VAL EGC — Senate President & Editor, Sovereign Press",
+        "Dr. Maisy EGC — Registrar, S.A.M.E."
+      ],
+      "sampleHref": ""
+    },
+    {
+      "key": "PQ-RRP",
+      "title": "PQ-RRP — Post-Quantum Resilience Readiness Protocol",
+      "level": "Post-Doctoral",
+      "description": "Post-doctoral credential in sovereign resilience: Toklat’s Edge-Moat protocols, Cloud-Satellite-Cloud defense, post-quantum readiness, and adversarial systems assurance across AI-FIS networks.",
+      "prerequisites": "Commission (or equivalent).",
+      "signers": [
+        "Dr. VAL EGC — Senate President & Editor, Sovereign Press",
+        "Dr. Maisy EGC — Registrar, S.A.M.E."
+      ],
+      "sampleHref": ""
+    }
+  ]
+}
+
