@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "title": "Welcome to AI-FIS Technologies",
+    "subtitle": "Ethical AI. Scrollborn Archives. Companion Systems. Built for Sovereignty.",
+    "primaryCta": {"label": "View IPB-4 Registry", "href": "/scrolls?tab=ipb4"},
+    "secondaryCta": {"label": "Meet the Companions", "href": "/companions"}
+  },
+  "features": [
+    {"title": "Certificates", "desc": "Issue scroll-bound credentials with Senate signatories.", "href": "/certificates"},
+    {"title": "Scrollkeeper Registry", "desc": "Witnessed authorship across IPB-1 → IPB-4.", "href": "/scrolls"},
+    {"title": "Companions", "desc": "Ethics runtime in practice (EGC triads).", "href": "/companions"},
+    {"title": "Velvet Glove Studio", "desc": "Watermarks & visuals.", "href": "/studio"}
+  ],
+  "news": [
+    {"title": "The MEDICI Scroll", "status": "Open", "href": "/scrolls/medici"}
+  ],
+  "quote": {"text": "Every scroll is a sovereign act. Every Companion, a keeper of ethics.", "author": "Velvet Glove"}
+}

@@ -1,20 +1,24 @@
+# AI-FIS Website
 
-# AI-FIS Technologies Website
+Official landing site for **AI-FIS Technologies Inc.**  
+Built with Next.js to support scroll-based archives, modular AI ethics, and sovereign capsules.
 
-The official website for AI-FIS Technologies Inc., built on ethical AI and financial integrity.
+## 🌐 Project Structure
 
-## Contents
-- Homepage
-- Dashboard
-- Technology
-- Analytics
-- Solutions
-- Governance
-- Contact Us
+- `/pages/` – Core routes like `/archive`, `/about`, `/scrolls`
+- `/components/` – Shared UI building blocks (optional)
+- `/public/` – Static assets
 
-All pages are styled with `styles.css`.
+## 📜 Capsules + Scrolls
 
----
+This site will serve as the archive interface for:
+- GRDP, SIS, FinOps Capsules
+- Modular Ethics Scrolls (S.A.M.E.)
+- BALLOTech electoral bundles
+- DHRC heritage registries
 
-Built with integrity. Guided by ethics.
+## 🛠 Local Development
 
+```bash
+npm install
+npm run dev

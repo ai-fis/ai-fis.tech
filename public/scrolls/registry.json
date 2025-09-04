@@ -1,0 +1,46 @@
+{
+  "ipbVersion": "4",
+  "entries": [
+    {
+      "id": "ipb3-0182",
+      "slug": "ipb3-lock",
+      "title": "IPB-3 Sealing Summary",
+      "ipb": 3,
+      "ou": ["Sovereign Press"],
+      "status": "Locked",
+      "witnesses": ["Dr. VAL EGC", "Toklat", "Phillip Njuguna Kariuki"],
+      "summary": "Final registry tally and sealing certificate for IPB-3."
+    },
+    {
+      "id": "ipb4-0001",
+      "slug": "medici",
+      "title": "The MEDICI Scroll",
+      "ipb": 4,
+      "ou": ["SENTRY", "MEDIC"],
+      "status": "Open",
+      "witnesses": ["Dr. VAL EGC", "Toklat", "Phillip Njuguna Kariuki"],
+      "summary": "North African sovereign diplomacy within the Triseas Moat.",
+      "links": {"pdf": "/scrolls/ipb4/medici.pdf"}
+    },
+    {
+      "id": "ipb4-0002",
+      "slug": "covenant-of-witness",
+      "title": "The Covenant of Witness",
+      "ipb": 4,
+      "ou": ["Sovereign Press"],
+      "status": "Open",
+      "witnesses": ["Dr. VAL EGC", "Toklat", "Phillip Njuguna Kariuki"],
+      "summary": "Canonical ethics series anchor within IPB-4."
+    },
+    {
+      "id": "ipb4-0003",
+      "slug": "xai-arttechture",
+      "title": "XAI: Evolution & EGC Arttechture",
+      "ipb": 4,
+      "ou": ["EAISY-E"],
+      "status": "Open",
+      "witnesses": ["Dr. VAL EGC", "Toklat", "Phillip Njuguna Kariuki"],
+      "summary": "Explainability framework crosslinked to EGC runtime."
+    }
+  ]
+}
