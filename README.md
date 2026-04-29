@@ -1,2 +1,1 @@
-# ai-fis.tech
-AI-FIS Technologies Inc.
+# AI-FIS Technologies Inc. Financial Decision Observatory (FDO) Minimal presence site.
