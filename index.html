@@ -4,69 +4,255 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AI-FIS Technologies Inc.</title>
-    <meta
+  <meta
     name="description"
     content="AI-FIS Technologies Inc. — Governed Assistive Intelligence. Observation before action."
   />
-  style>
+  <style>
+    :root {
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.84);
+      --soft: rgba(255, 255, 255, 0.62);
+      --gold: #e6c98f;
+      --dark: #07111f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #ffffff;
-      color: #111111;
+      min-height: 100%;
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--dark);
+      color: var(--text);
+    }
+
+    body {
       min-height: 100vh;
+    }
+
+    .page {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(7, 17, 31, 0.55),
+          rgba(7, 17, 31, 0.35) 42%,
+          rgba(7, 17, 31, 0.85)
+        ),
+        linear-gradient(rgba(7, 17, 31, 0.52), rgba(7, 17, 31, 0.52)),
+        url("./bridge-landing.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 2rem 1.75rem 1.5rem;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 0.04em;
+      font-size: clamp(1rem, 2.8vw, 1.25rem);
+      white-space: nowrap;
+    }
+
+    .mark {
+      width: 2.3rem;
+      height: 2.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      padding-left: 0.18em;
+    }
+
+    .menu {
+      width: 2.75rem;
+      height: 2.75rem;
+      border: 0;
+      background: transparent;
+      display: grid;
+      gap: 0.35rem;
+      align-content: center;
+      justify-content: center;
+      cursor: default;
+    }
+
+    .menu span {
+      display: block;
+      width: 1.65rem;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .hero {
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 32px;
-    }
-    main {
-      max-width: 720px;
       text-align: center;
-      line-height: 1.6;
+      padding: 4rem 0 2rem;
     }
+
+    .hero-inner {
+      max-width: 48rem;
+      margin: 0 auto;
+    }
+
     h1 {
-      font-size: 24px;
-      margin-bottom: 16px;
+      margin: 0;
+      font-size: clamp(3rem, 11vw, 7rem);
+      line-height: 0.98;
+      font-weight: 400;
+      letter-spacing: 0.045em;
+      text-wrap: balance;
     }
-    h2 {
-      font-size: 18px;
-      font-weight: normal;
-      margin-bottom: 24px;
+
+    .tagline {
+      margin: 1.8rem 0 0;
+      font-size: clamp(1.15rem, 4vw, 1.75rem);
+      font-style: italic;
+      color: rgba(255, 244, 214, 0.92);
+      letter-spacing: 0.04em;
     }
-    p {
-      font-size: 16px;
-      margin: 12px 0;
+
+    .rule {
+      width: 4.4rem;
+      height: 1px;
+      margin: 1.65rem auto 0;
+      background: rgba(230, 201, 143, 0.85);
     }
-    .small {
-      font-size: 14px;
-      color: #555;
+
+    .subline {
+      margin: 1.65rem auto 0;
+      max-width: 42rem;
+      font-size: clamp(1.35rem, 4.5vw, 2.2rem);
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 0.02em;
     }
-    footer {
-      margin-top: 48px;
-      font-size: 12px;
-      color: #666;
+
+    .footer {
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      padding-top: 1.6rem;
+      color: var(--muted);
+    }
+
+    .footer p {
+      margin: 0;
+      font-size: clamp(1rem, 3.5vw, 1.18rem);
+      line-height: 1.7;
+      letter-spacing: 0.03em;
+    }
+
+    .footer a {
+      display: inline-block;
+      margin-top: 0.2rem;
+      color: rgba(255, 244, 214, 0.95);
+      text-decoration: none;
+      font-size: clamp(1.05rem, 3.6vw, 1.25rem);
+      letter-spacing: 0.05em;
+    }
+
+    .languages {
+      margin-top: 2.2rem !important;
+      color: rgba(255, 255, 255, 0.78);
+      letter-spacing: 0.1em !important;
+    }
+
+    .dot {
+      color: rgba(255, 255, 255, 0.36);
+      margin: 0 0.75rem;
+    }
+
+    @media (min-width: 760px) {
+      .shell {
+        padding: 2.5rem 4rem 2rem;
+      }
+
+      .hero {
+        justify-content: flex-start;
+        text-align: left;
+      }
+
+      .hero-inner {
+        margin: 0;
+      }
+
+      .rule {
+        margin-left: 0;
+      }
+
+      .subline {
+        margin-left: 0;
+      }
+
+      .footer {
+        max-width: 48rem;
+        margin: 0 auto;
+      }
     }
   </style>
 </head>
+
 <body>
-  <main>
-    <h1>AI-FIS Technologies Inc.</h1>
+  <main class="page">
+    <section class="shell" aria-label="AI-FIS Bridge Landing Page">
+      <header class="topbar">
+        <div class="brand" aria-label="AI-FIS Technologies Inc.">
+          <div class="mark" aria-hidden="true">AI</div>
+          <div>AI-FIS Technologies Inc.</div>
+        </div>
 
-    <h2>Financial Decision Observatory (FDO)</h2>
+        <button class="menu" type="button" aria-label="Menu placeholder">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </header>
 
-    <p>A public-goods framework for observing systemic financial behavior prior to commitment.</p>
+      <section class="hero">
+        <div class="hero-inner">
+          <h1>Governed Assistive Intelligence</h1>
+          <p class="tagline">Observation before action.</p>
+          <div class="rule" aria-hidden="true"></div>
+          <p class="subline">Bounded observability before commitment.</p>
+        </div>
+      </section>
 
-    <p class="small">Conceptual research across governance, financial systems, and Assistive Intelligence.</p>
+      <footer class="footer">
+        <p>For academic, legal, and institutional inquiries:</p>
+        <a href="mailto:inquiries@ai-fis.tech">inquiries@ai-fis.tech</a>
 
-    <p class="small">
-      For academic, legal, and institutional inquiries:<br />
-      njuguna.kariuki@ai-fis.tech
-    </p>
-
-    <footer>
-      Sovereign Press. Licensed under EBOL v1.3. All Rights Reserved.
-    </footer>
+        <p class="languages">
+          English <span class="dot">•</span> Kiswahili <span class="dot">•</span> Français
+        </p>
+      </footer>
+    </section>
   </main>
 </body>
 </html>
